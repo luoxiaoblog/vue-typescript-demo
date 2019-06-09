@@ -1,0 +1,248 @@
+header {
+  background: #f7f7f7;
+  z-index: 103;
+}
+
+header .search-ipt {
+  font-size: 0.28rem;
+  width: 100%;
+  height: 0.6rem;
+  line-height: 0.6rem;
+  padding-left: 0.72rem;
+  background: #fff;
+  outline: none;
+  border-radius: 0.3rem;
+  box-shadow: 0 0 1px #e8e8e8;
+}
+
+.data-box {
+  position: relative;
+  z-index: 30;
+}
+
+.caret:after {
+  content: '';
+  width: 0;
+  height: 0;
+  display: inline-block;
+  margin-top: 0.06rem;
+  border-width: 0.08rem 0.08rem 0 0.08rem;
+  border-style: solid;
+  border-color: #c6c5c7 transparent transparent transparent;
+  margin-left: 0.1rem;
+  vertical-align: middle;
+}
+
+.sort-block:before {
+  position: absolute;
+  content: '';
+  display: inline-block;
+  width: 1px;
+  height: 0.2rem;
+  left: 0;
+  top: 0.3rem;
+  background: #d7d7d7;
+}
+
+.data-box ul.select-box .dpdown-toggle span {
+  max-width: 1rem;
+  display: inline-block;
+  font-size: 0.3rem;
+  vertical-align: middle;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 0.48rem;
+}
+
+.sort-block .stor-icon {
+  display: inline-block;
+  width: 0.18rem;
+  height: 0.2rem;
+  margin-left: 0.1rem;
+  margin-top: 0.02rem;
+  //   background: url(../../images/sort.png) no-repeat center center;
+  background-size: contain;
+  vertical-align: middle;
+}
+
+.filter-content {
+  position: absolute;
+  top: 0.88rem;
+  width: 100%;
+  z-index: 101;
+  overflow: hidden;
+  transition: all 0.3s;
+}
+
+.filter-panel {
+  display: none;
+  position: relative;
+  font-size: 0.3rem;
+  color: #515151;
+  background: #fff;
+}
+
+.filter-panel-left {
+  position: absolute;
+  width: 21%;
+  height: 100%;
+  left: 0;
+  box-sizing: border-box;
+  background: #f4f4f4;
+}
+
+.filter-panel-middle {
+  position: absolute;
+  width: 42%;
+  height: 100%;
+  left: 21%;
+  box-sizing: border-box;
+  padding-left: 0.3rem;
+}
+
+.filter-content .scroll {
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.filter-panel-right {
+  position: absolute;
+  width: 36%;
+  height: 100%;
+  left: 63%;
+  box-sizing: border-box;
+  padding-left: 0.3rem;
+  border-left: 1px solid #e8e8e8;
+  display: none;
+}
+
+.filter-panel li {
+  height: 0.88rem;
+  line-height: 0.88rem;
+}
+
+.filter-panel-single.scroll {
+  height: 6.8rem;
+  padding-bottom: 1.12rem;
+}
+
+.filter-panel-single {
+  box-sizing: border-box;
+  padding-left: 0.3rem;
+  background: #fff;
+}
+
+.filter-panel li.on {
+  background: #fff;
+  color: #e03236;
+}
+
+.filter-panel-single li {
+  position: relative;
+  overflow: hidden;
+}
+
+.filter-diy {
+  position: absolute;
+  bottom: 0;
+  box-sizing: border-box;
+  width: 100%;
+  height: 1.12rem;
+  padding: 0.3rem;
+  font-size: 0.28rem;
+  line-height: 0.56rem;
+  text-align: center;
+  color: #c6c5c7;
+  background: #ffffff;
+  box-shadow: inset 0 0 0 1px #e8e8e8, inset 0 0 1px 0 #e8e8e8;
+}
+
+.filter-input {
+  font-size: 0.3rem;
+  width: 1.88rem;
+  height: 0.56rem;
+  padding: 0 0.2rem;
+  border-radius: 3px;
+  background: #f0f2f5;
+  text-align: center;
+}
+
+.filter-diy .em {
+  padding: 0 0.08rem;
+}
+
+.filter-btn {
+  width: 2.56rem;
+  height: 0.56rem;
+  line-height: 0.58rem;
+  margin-left: 0.22rem;
+  background: #e03236;
+  border-radius: 3px;
+  color: #fff;
+  border: none;
+}
+
+.filter-panel-more {
+  box-sizing: border-box;
+  height: 100%;
+  padding-bottom: 0.88rem;
+  background: #fff;
+}
+
+.filter-property {
+  padding: 0.3rem 0 0.2rem 0.3rem;
+  position: relative;
+}
+
+.filter-dt {
+  line-height: 0.4rem;
+  font-size: 0.32rem;
+  color: #333;
+}
+
+.filter-dd a {
+  float: left;
+  box-sizing: border-box;
+  width: 1.48rem;
+  height: 0.54rem;
+  line-height: 0.56rem;
+  margin: 0.3rem 0.28rem 0 0;
+  text-align: center;
+  background: #f0f0f0;
+  border: 1px solid #f0f0f0;
+  border-radius: 2px;
+  font-size: 0.26rem;
+  color: #515151;
+}
+
+.filter-btn-box {
+  width: 100%;
+  height: 0.88rem;
+  line-height: 0.88rem;
+  font-size: 0.32rem;
+  background: #df3031;
+  color: #fff;
+  border: none;
+  position: absolute;
+  bottom: 0;
+}
+
+.filter-prop-btn.reset {
+  width: 40%;
+  height: 0.88rem;
+  color: #515151;
+  background: #ffffff;
+  font-size: 0.34rem;
+  text-align: center;
+  box-shadow: inset 0 0 2px #e8e8e8;
+}
+
+.filter-prop-btn.confirm {
+  width: 60%;
+  height: 0.88rem;
+  color: #fff;
+  background: #e03236;
+  font-size: 0.34rem;
+  text-align: center;
+}
