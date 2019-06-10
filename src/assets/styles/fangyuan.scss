@@ -15,6 +15,11 @@ header .search-ipt {
   box-shadow: 0 0 1px #e8e8e8;
 }
 
+.noscroll,
+.noscroll body {
+  overflow: hidden;
+}
+
 .data-box {
   position: relative;
   z-index: 30;
@@ -55,6 +60,15 @@ header .search-ipt {
   line-height: 0.48rem;
 }
 
+.dpdown-toggle.active {
+  color: #e03236 !important;
+}
+
+.caret.active:after {
+  border-width: 0 0.08rem 0.08rem 0.08rem;
+  border-color: transparent transparent #e03236 transparent;
+}
+
 .sort-block .stor-icon {
   display: inline-block;
   width: 0.18rem;
@@ -90,6 +104,10 @@ header .search-ipt {
   left: 0;
   box-sizing: border-box;
   background: #f4f4f4;
+}
+
+.filter-panel-left li {
+  text-indent: 0.3rem;
 }
 
 .filter-panel-middle {
@@ -245,4 +263,88 @@ header .search-ipt {
   background: #e03236;
   font-size: 0.34rem;
   text-align: center;
+}
+
+.mask {
+  background-color: rgba(0, 0, 0, .5);
+  width: 100%;
+  height: 200%;
+  position: fixed;
+  top: auto;
+  right: 0;
+  bottom: -50%;
+  left: 0;
+  z-index: 20;
+  display: none;
+}
+
+.dpdown-toggle.active {
+  color: #e03236 !important;
+}
+
+.dpdown-toggle.curr {
+  color: #e03236 !important;
+}
+
+.caret.active:after {
+  border-width: 0 0.08rem 0.08rem 0.08rem;
+  border-color: transparent transparent #e03236 transparent;
+}
+
+.caret.curr:after {
+  border-width: 0.08rem 0.08rem 0 0.08rem;
+  border-color: #e03236 transparent transparent transparent;
+}
+
+.filter-dd a.on {
+  background: #fff;
+  color: #e03236;
+  border: 1px solid #e03236;
+}
+
+.dpdown-toggle.active span:after {
+  position: absolute;
+  content: "";
+  width: 0;
+  height: 0;
+  bottom: -1px;
+  left: 50%;
+  margin-left: -.28rem;
+  display: inline-block;
+  border-width: 0 .14rem .12rem .14rem;
+  border-style: solid;
+  border-color: transparent transparent #fff transparent;
+  z-index: 3;
+}
+
+.dpdown-toggle.active span:before {
+  position: absolute;
+  content: "";
+  width: 0;
+  height: 0;
+  bottom: 0;
+  left: 50%;
+  margin-left: -.28rem;
+  display: inline-block;
+  border-width: 0 .14rem .12rem .14rem;
+  border-style: solid;
+  border-color: transparent transparent #e4e4e4 transparent;
+  z-index: 2;
+}
+
+.filter-panel-single li:first-child:after {
+  background: transparent;
+}
+
+.filter-panel-single li:after {
+  content: "";
+  position: absolute;
+  display: block;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 1px;
+  background: #e8e8e8;
+  -webkit-transform: scaleY(0.5);
+  transform: scaleY(0.5);
 }

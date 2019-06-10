@@ -4,7 +4,14 @@
     "require": true
   },
   "rules": {
-    "space-before-function-paren": [true, "never"],
-    "semicolon": [true, "always"]
+    "space-before-function-paren": [
+      true,
+      "never"
+    ],
+    "semicolon": [
+      true,
+      "always"
+    ],
+    "no-floating-promises": false
   }
 }

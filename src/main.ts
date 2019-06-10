@@ -4,7 +4,7 @@ import router from './router';
 import store from './store';
 import FastClick from 'fastclick';
 
-import './rem';
+import './responsive';
 import 'normalize.css';
 
 // 兼容毒瘤ios的300ms延迟问题
