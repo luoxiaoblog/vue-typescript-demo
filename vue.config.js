@@ -8,7 +8,7 @@ module.exports = {
       //   // pathRewrite: { '^/api': '' }
       // }
       '/': {
-        target: 'https://i.leyoujia.com/',
+        target: 'http://172.16.6.39:8080',
         changeOrigin: true
       }
     }

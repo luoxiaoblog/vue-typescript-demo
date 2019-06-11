@@ -15,3 +15,11 @@ section {
   font-size: 0.28rem;
   max-width: 1.4rem;
 }
+
+.md-activity-indicator {
+  position: fixed;
+  top: 50%;
+  z-index: 10000;
+  left: 50%;
+  transform: translate(-50%);
+}

@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import LoupanList from './views/LoupanList.vue';
+import LoupanList from './views/loupan-list/LoupanList.vue';
 
 Vue.use(Router);
 
