@@ -3,7 +3,7 @@
     <div class="scroll-wrapper">
       <ul class="house-list" id="houseList">
         <li v-for="(item) in data.data" :key="item.id">
-          <a class="clear" :href="`/shenzhen/xq/detail/${item.id}.html`">
+          <a class="clear" :href="`./dic-detail.html?comId=${item.id}&cityCode=${cityCode} `">
             <div class="fl housing-img">
               <img
                 class="lazy-load"
@@ -41,6 +41,7 @@ import { Component, Vue, Prop, Provide } from 'vue-property-decorator';
 @Component
 export default class LPlist extends Vue {
   @Prop() data: any;
+  @Prop() cityCode: string = '000002';
 
   // @Provide() loupanData: any = this.data;
 

@@ -1,7 +1,7 @@
 <template>
   <div class="loupan-list">
     <header-search @searchLoupan="onSearchLoupan"></header-search>
-    <lp-list :data="loupanData"></lp-list>
+    <lp-list :data="loupanData" :cityCode="cityCode"></lp-list>
   </div>
 </template>
 
