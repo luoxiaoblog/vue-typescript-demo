@@ -2,25 +2,19 @@
   <div class="lpdetail-header">
     <div class="swiper-container photo-wrap">
       <ul class="swiper-wrapper" id="houseImages">
-        <li class="swiper-slide swiper-img">
+        <li v-for="item in data.albumList" :key="item.id" class="swiper-slide swiper-img">
           <img
-            src="http://7xln4b.com1.z0.glb.clouddn.com//community/album/2019-03/07/11/FqE3uYsSA_7OCpA4vR9w6eD4E8ng.jpg?imageView2/2/w/400/h/300"
-            onerror="this.src='https://alicdn.leyoujia.com/wap/images/house_default.png'"
-          >
-        </li>
-        <li class="swiper-slide swiper-img">
-          <img
-            src="http://7xln4b.com1.z0.glb.clouddn.com//community/album/2019-03/07/11/FqE3uYsSA_7OCpA4vR9w6eD4E8ng.jpg?imageView2/2/w/400/h/300"
+            :src="item.imgVistPath + '?imageView2/2/w/400/h/300'"
             onerror="this.src='https://alicdn.leyoujia.com/wap/images/house_default.png'"
           >
         </li>
       </ul>
-      <span class="photo-no">2/26</span>
+      <span class="photo-no">{{imgCurrIndex}}/26</span>
       <span class="photo-edit" onclick="goPhotoEdit()">编辑</span>
     </div>
     <div class="clear title-wrap">
-      <div class="esf-title" id="name" onclick="goDicEdit()">NEW发生发送分13</div>
-      <p id="addr">地址：福田-华强南-龙岗布吉镇大芬油画村对面1</p>
+      <div class="esf-title" id="name" onclick="goDicEdit()">{{data.dic.name}}</div>
+      <p id="addr">地址：{{data.dic.areaName}}-{{data.dic.placeName}}-{{data.dic.addr}}</p>
       <input class="infoField" type="hidden" id="comId">
     </div>
     <div class="fangyuan-info-detail">
@@ -28,19 +22,19 @@
         <ul>
           <li>
             <p class="content" style="font-size:0.3rem;">
-              <b class="num" id="saleAvgPrice">10423元/m²</b>
+              <b class="num" id="saleAvgPrice">{{saleAvgPrice}}</b>
             </p>
             <p class="title">小区在售均价</p>
           </li>
           <li>
             <p class="content">
-              <b class="num" id="saleCount">117</b>
+              <b class="num" id="saleCount">{{saleCount}}</b>
             </p>
             <p class="title">在售房源</p>
           </li>
           <li>
             <p class="content">
-              <b class="num" id="rentCount">86</b>
+              <b class="num" id="rentCount">{{rentCount}}</b>
             </p>
             <p class="title">在租房源</p>
           </li>
@@ -51,14 +45,53 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Provide } from 'vue-property-decorator';
+import { Vue, Component, Provide, Prop, Watch } from 'vue-property-decorator';
 import Swiper from 'swiper';
 import 'swiper/dist/css/swiper.min.css';
 
 @Component
 export default class LPDetailHeader extends Vue {
-  mounted() {
-    let mySwiper = new Swiper('.swiper-container', {});
+  @Prop({
+    default: () => {
+      return {
+        dic: {},
+        info: {},
+        albumList: Array
+      };
+    }
+  })
+  data: any;
+
+  @Provide() imgCurrIndex: number = 1;
+
+  get saleAvgPrice(): string {
+    return this.valTool(this.data.info.saleAvgPrice, '元/m²');
+  }
+
+  get saleCount(): string {
+    return this.valTool(this.data.info.saleCount, '', '--');
+  }
+
+  get rentCount(): string {
+    return this.valTool(this.data.info.rentCount, '', '--');
+  }
+
+  @Watch('data')
+  dataChange(val: any) {
+    this.$nextTick(() => {
+      const vm = this;
+      const swiper = new Swiper('.swiper-container', {
+        on: {
+          slideChange: function() {
+            vm.imgCurrIndex = swiper.activeIndex + 1;
+          }
+        }
+      });
+    });
+  }
+
+  valTool(val: string, unitStr: string = '', emptyStr: string = ''): string {
+    return !val ? emptyStr : val + unitStr;
   }
 }
 </script>

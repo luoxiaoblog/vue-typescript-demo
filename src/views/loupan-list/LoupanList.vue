@@ -9,7 +9,7 @@
 import { Vue, Component, Provide } from 'vue-property-decorator';
 import HeaderSearch from './header-search.vue';
 import LpList from './list.vue';
-import API from '@/api/http';
+import API from '@/api';
 
 @Component({
   components: {

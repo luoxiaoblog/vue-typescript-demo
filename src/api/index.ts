@@ -7,7 +7,8 @@ import { showFullScreenLoading, tryHideFullScreenLoading } from '../loading';
 // const HOST = config.basicUrl;
 
 // 创建实例
-const service = axios.create({
+let service;
+const axiosInstance = axios.create({
   baseURL: config.basicUrl,
   timeout: 5000, // 请求超时时间
   headers: {
@@ -16,7 +17,7 @@ const service = axios.create({
 });
 
 // request拦截器
-service.interceptors.request.use(
+axiosInstance.interceptors.request.use(
   config => {
     // 处理post请求变成options
     if (config.method === 'post') {
@@ -52,7 +53,7 @@ service.interceptors.request.use(
 );
 
 // Add a response interceptor
-service.interceptors.response.use(
+axiosInstance.interceptors.response.use(
   response => {
     // Do something with response data
     if (Vue.$isShowLoading) {
@@ -69,5 +70,11 @@ service.interceptors.response.use(
     return Promise.reject(error);
   }
 );
+
+if (process.env.NODE_ENV === 'development') {
+  service = axiosInstance;
+} else {
+  service = {};
+}
 
 export default service;

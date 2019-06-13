@@ -5,11 +5,11 @@ import LoupanList from './views/loupan-list/LoupanList.vue';
 Vue.use(Router);
 
 export default new Router({
-  mode: 'history',
+  mode: 'hash',
   base: process.env.BASE_URL,
   routes: [
     {
-      path: '/',
+      path: '*',
       name: 'loupanList',
       component: LoupanList
     },

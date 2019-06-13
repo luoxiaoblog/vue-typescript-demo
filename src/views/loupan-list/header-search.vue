@@ -266,7 +266,7 @@
 
 <script lang="ts">
 import { Component, Vue, Provide, Watch } from 'vue-property-decorator';
-import API from '@/api/http';
+import API from '@/api';
 
 @Component
 export default class HeaderSearch extends Vue {

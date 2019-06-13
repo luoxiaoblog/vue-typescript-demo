@@ -13,46 +13,46 @@
         <ul class="floor-orientation clear">
           <li class="ditie">
             <span class="title">建筑类型：</span>
-            <span class="content" id="buildingStructureStr"></span>
+            <span class="content" id="buildingStructureStr">{{data.dic.buildingStructureStr}}</span>
           </li>
           <li class="ditie">
             <span class="title">建筑年代：</span>
-            <span class="content" id="completionYear">1999/10/19</span>
+            <span class="content" id="completionYear">{{data.dic.minCompleteDateStr}}</span>
           </li>
           <li class="ditie">
             <span class="title">
               <em>建筑面积</em>：
             </span>
-            <span class="content" id="buildingArea">12312313m²</span>
+            <span class="content" id="buildingArea">{{buildingArea}}</span>
           </li>
           <li>
             <span class="title">
               <em>绿化率</em>：
             </span>
-            <span class="content" id="greenRate">42%</span>
+            <span class="content" id="greenRate">{{greenRate}}</span>
           </li>
           <li>
             <span class="title">
               <em>容积率</em>：
             </span>
-            <span class="content" id="cubageRate"></span>
+            <span class="content" id="cubageRate">{{data.info.cubageRate}}</span>
           </li>
 
           <li>
             <span class="title">规划户数：</span>
-            <span class="content" id="totalHouse">6204户</span>
+            <span class="content" id="totalHouse">{{totalHouse}}</span>
           </li>
           <li>
             <span class="title">
               <em>停车位</em>：
             </span>
-            <span class="content" id="parkingCount">3080个</span>
+            <span class="content" id="parkingCount">{{parkingCount}}</span>
           </li>
           <li class="ditie">
             <span class="title">
               <em>物业费</em>：
             </span>
-            <span class="content" id="managerFee">1.98-12.35元/㎡</span>
+            <span class="content" id="managerFee">{{manageFee}}</span>
           </li>
           <!--<li class="ditie">
 							<span class="title">产权性质：</span>
@@ -63,15 +63,12 @@
               <em>开发商</em>：
             </span>
             <div class="fl">
-              <p>金地（集团）股份有限公司</p>
-              <p>万科企业股份有限公司</p>
-              <p>21cccccc</p>
-              <p>aaavvvvv</p>
+              <p v-for="(item, i) in developer" :key="i">{{item}}</p>
             </div>
           </li>
           <li class="ditie">
             <span class="title">物业公司：</span>
-            <span class="content" id="managerCompanyName">aaaaaaaaaaaaaaaaaaaccc</span>
+            <span class="content" id="managerCompanyName">{{data.info.managerCompany}}</span>
           </li>
         </ul>
       </div>
@@ -83,10 +80,52 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Provide } from 'vue-property-decorator';
+import { Vue, Component, Provide, Prop } from 'vue-property-decorator';
+import ValTool from '@/minxins/val-tool.minxin.vue';
 
-@Component
-export default class LPDetailSummaryInfo extends Vue {}
+@Component({
+  mixins: [ValTool]
+})
+export default class LPDetailSummaryInfo extends Vue {
+  @Prop({
+    default: () => {
+      return {
+        dic: {},
+        info: {}
+      };
+    }
+  })
+  data: any;
+
+  get buildingArea(): string {
+    return this.valEmptyTool(this.data.info.buildingArea, 'm²', '');
+  }
+  get greenRate(): string {
+    return this.valEmptyTool(this.data.info.greenRate, '%', '');
+  }
+
+  get totalHouse(): string {
+    return this.valEmptyTool(this.data.info.totalHouse, '户', '');
+  }
+
+  get parkingCount(): string {
+    return this.valEmptyTool(this.data.info.parkingCount, '个', '');
+  }
+
+  get manageFee(): string {
+    if ('元/㎡' === this.data.dic.managerFee) {
+      return '';
+    } else {
+      return this.data.dic.managerFee;
+    }
+  }
+
+  get developer(): string[] {
+    const developer = this.data.info.developer;
+    if (developer) return developer.split(',');
+    return [''];
+  }
+}
 </script>
 
 <style lang="scss" scoped>
