@@ -7,6 +7,10 @@
     "space-before-function-paren": [true, "never"],
     "semicolon": [true, "always"],
     "no-floating-promises": false,
+    "no-inferrable-types": [true, "ignore-params", "ignore-properties"],
     "noImplicitAny": false
+  },
+  "linterOptions": {
+    "exclude": ["node_modules/**"]
   }
 }

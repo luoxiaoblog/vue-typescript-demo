@@ -100,6 +100,7 @@ export default class LPDetailSummaryInfo extends Vue {
   get buildingArea(): string {
     return this.valEmptyTool(this.data.info.buildingArea, 'm²', '');
   }
+
   get greenRate(): string {
     return this.valEmptyTool(this.data.info.greenRate, '%', '');
   }

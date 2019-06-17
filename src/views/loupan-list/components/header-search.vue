@@ -266,7 +266,7 @@
 
 <script lang="ts">
 import { Component, Vue, Provide, Watch } from 'vue-property-decorator';
-import API from '@/api';
+import api from '@/api';
 
 @Component
 export default class HeaderSearch extends Vue {
@@ -348,20 +348,16 @@ export default class HeaderSearch extends Vue {
   }
 
   async initArea() {
-    const res = await API({
-      method: 'post',
-      url: '/jjrplus/city/queryByParentCode',
-      data: {
-        parentCode: this.cityCode,
-        deeps: 3,
-        cityCode: this.cityCode
-      }
+    const res = await api.loupanlistApi.queryByParentCode({
+      parentCode: this.cityCode,
+      deeps: 3,
+      cityCode: this.cityCode
     });
     this.areaList = res.data.data;
   }
 
   async getPlaceList(code: string) {
-    const res = await API.post('/jjrplus/city/queryByParentCode', {
+    const res = await api.loupanlistApi.queryByParentCode({
       parentCode: code,
       deeps: 4,
       cityCode: this.cityCode
@@ -370,15 +366,11 @@ export default class HeaderSearch extends Vue {
   }
 
   async initDefaultLoupan() {
-    const res = await this.getSearchResLoupan({
+    const res = await api.loupanlistApi.cascadeSearchCom({
       pageSize: 10,
       searchCity: this.cityCode
     });
     this.searchResLoupan = res.data.datas;
-  }
-
-  getSearchResLoupan(params: any) {
-    return API.post('/jjrplus/community/cascadeSearchCom', params);
   }
 
   toggleDocScroll(isNoScroll: boolean) {
@@ -391,7 +383,7 @@ export default class HeaderSearch extends Vue {
   }
 
   async onSearchInput(e: any) {
-    const res = await this.getSearchResLoupan({
+    const res = await api.loupanlistApi.cascadeSearchCom({
       pageSize: 10,
       searchCity: this.cityCode,
       keyword: e.target.value

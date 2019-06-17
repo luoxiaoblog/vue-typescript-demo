@@ -1,18 +1,19 @@
 <template>
-  <div id="loupanDetail">
+  <div id="loupanDetail" style="padding-bottom: 1.16rem;">
     <lpdetail-header :data="detail"></lpdetail-header>
     <lpdetail-summary-info :data="detail"></lpdetail-summary-info>
     <lpdetail-baodian></lpdetail-baodian>
     <lpdetail-description :data="detail.info.introduction"></lpdetail-description>
     <lpdetail-price-info :data="detail.chartDatavo"></lpdetail-price-info>
-    <lpdetail-pos-and-around></lpdetail-pos-and-around>
+    <lpdetail-pos-and-around :data="posData"></lpdetail-pos-and-around>
+    <lpdetail-footer></lpdetail-footer>
   </div>
 </template>
 
 <script lang="ts">
 import { Vue, Component, Provide } from 'vue-property-decorator';
-import LPDetailComponents from '@/components/loupan-detail';
-import API from '@/api';
+import LPDetailComponents from './components';
+import api from '@/api';
 
 @Component({
   components: {
@@ -28,8 +29,17 @@ export default class LoupanDetail extends Vue {
     chartDatavo: ''
   };
 
+  get posData(): any {
+    return {
+      center: { lat: this.detail.info.lat, lng: this.detail.info.lng },
+      zoom: 16,
+      subwayList: this.detail.subwayList,
+      schoolList: this.detail.schoolList
+    };
+  }
+
   async getDetail() {
-    const res = await API.post('/jjrplus/community/getDicDetail', {
+    const res = await api.loupanDetailApi.getDicDetail({
       comId: this.id,
       source: 'dic-detail'
     });

@@ -1,25 +1,26 @@
 <template>
   <div class="loupan-list">
     <header-search @searchLoupan="onSearchLoupan"></header-search>
-    <lp-list :data="loupanData" :cityCode="cityCode"></lp-list>
+    <lp-list ref="list" :data="loupanData" :cityCode="cityCode"></lp-list>
   </div>
 </template>
 
 <script lang="ts">
 import { Vue, Component, Provide } from 'vue-property-decorator';
-import HeaderSearch from './header-search.vue';
-import LpList from './list.vue';
-import API from '@/api';
+import ListComponents from './components';
+import api from '@/api';
 
 @Component({
-  components: {
-    HeaderSearch,
-    LpList
-  }
+  components: { ...ListComponents }
 })
 export default class LoupanList extends Vue {
   @Provide() isLoading: boolean = true;
-  @Provide() loupanData: any = {};
+  @Provide() loupanData: any = {
+    data: [],
+    pageNo: 1,
+    pageSize: 10,
+    total: 0
+  };
   @Provide() cityCode: string = '000002';
 
   async initLoupan() {
@@ -36,8 +37,7 @@ export default class LoupanList extends Vue {
 
   async getLoupanList(params: any) {
     Vue.$isShowLoading = true;
-    const res = await API.post('/jjrplus/community/queryDicList', params);
-
+    const res = await api.loupanlistApi.queryDicList(params);
     this.loupanData = res.data.data;
   }
 

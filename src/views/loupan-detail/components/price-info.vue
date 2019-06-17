@@ -43,20 +43,21 @@ export default class LPDetailPriceInfo extends Vue {
 
   @Watch('data')
   dataChange(val: any) {
+    const that = this;
     this.$nextTick(() => {
-      // if (this.data && this.data.lpCjPrice && this.data.lpCjPrice.length) {
-      //   const lpCjPriceList = this.data.lpCjPrice;
-      //   const newLpCjPriceList: number[] = [];
-      //   lpCjPriceList.forEach(item => {
-      //     if (item) {
-      //       newLpCjPriceList.push(this.priceTool(item));
-      //     }
-      //   });
-      //   const xData = this.data.monthStr.filter(item => {
-      //     if (item) return true;
-      //   });
-      //   this.myChartInit(xData, newLpCjPriceList);
-      // }
+      if (this.data && this.data.lpCjPrice && this.data.lpCjPrice.length) {
+        const lpCjPriceList = this.data.lpCjPrice;
+        const newLpCjPriceList: number[] = [];
+        lpCjPriceList.forEach((item: any) => {
+          if (item) {
+            newLpCjPriceList.push(that.priceTool(item));
+          }
+        });
+        const xData = this.data.monthStr.filter((item: any) => {
+          return !!item;
+        });
+        this.myChartInit(xData, newLpCjPriceList);
+      }
     });
   }
 

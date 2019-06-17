@@ -36,17 +36,17 @@
   </section>
 </template>
 <script lang="ts">
-import { Component, Vue, Prop, Provide } from 'vue-property-decorator';
+import Vue from 'vue';
+import Component from 'vue-class-component';
 
-@Component
-export default class LPlist extends Vue {
-  @Prop() data: any;
-  @Prop() cityCode: string = '000002';
-
-  // @Provide() loupanData: any = this.data;
-
-  mounted() {
-    console.log(this.data);
+@Component({
+  props: {
+    data: Object,
+    cityCode: {
+      type: String,
+      default: '000002'
+    }
   }
-}
+})
+export default class LPlist extends Vue {}
 </script>
