@@ -21,7 +21,7 @@
     "mand-mobile": "^2.2.4",
     "normalize.css": "^8.0.1",
     "postcss-pxtorem": "^4.0.1",
-    "qs": "^6.7.0",
+    "qs": "^6.7.3",
     "swiper": "^4.5.0",
     "vue": "^2.6.10",
     "vue-axios": "^2.1.4",
